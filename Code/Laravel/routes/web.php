@@ -27,7 +27,7 @@ Route::post('/comment', 'CommentsController@newComment');
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('users/register', 'Auth\RegisterController@register');
 
-Auth::routes();
+\Illuminate\Support\Facades\Auth::routes();
 
 
 Route::get('home', 'PagesController@home');
@@ -37,6 +37,8 @@ Route::get('users/logout', 'Auth\LoginController@logout');
 Route::get('users/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('users/login', 'Auth\LoginController@login');
 
+Route::get('/blog', 'BlogController@index');
+Route::get('/blog/{slug?}', 'BlogController@show');
 
 Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'manager'), function () {
     Route::get('/', 'PagesController@home');
@@ -57,5 +59,4 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
     Route::get('categories', 'CategoriesController@index');
     Route::get('categories/create', 'CategoriesController@create');
     Route::post('categories/create', 'CategoriesController@store');
-
 });

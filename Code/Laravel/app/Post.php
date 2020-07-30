@@ -12,4 +12,10 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Category')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'post');
+    }
+
 }
